@@ -1,5 +1,6 @@
 package com.example.test.controller;
 
+import com.example.test.dto.AuthenticationResponse;
 import com.example.test.dto.UserDto;
 import com.example.test.entity.User;
 import com.example.test.service.UserService;
@@ -23,5 +24,12 @@ public class UserController {
         User user = userService.addNewUser(userDto);
 
         return ResponseEntity.ok(UserDto.from(user));
+    }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody UserDto userDto) {
+        AuthenticationResponse authenticationResponse = userService.authenticateUser(userDto);
+
+        return ResponseEntity.ok(authenticationResponse);
     }
 }
