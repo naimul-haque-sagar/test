@@ -50,6 +50,10 @@ public class UserController {
 
         AuthenticationResponse authenticationResponse = userService.authenticateUser(authenticationDto);
 
-        return ResponseEntity.ok(authenticationResponse);
+        if (Objects.nonNull(authenticationResponse.getJwtToken())) {
+            return ResponseEntity.ok(authenticationResponse);
+        }
+
+        return ResponseEntity.badRequest().body("Wrong credentials");
     }
 }

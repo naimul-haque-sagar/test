@@ -8,6 +8,7 @@ import com.example.test.jwt.JwtProvider;
 import com.example.test.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,13 +32,17 @@ public class UserService {
     }
 
     public AuthenticationResponse authenticateUser(AuthenticationDto authenticationDto) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken
-                (authenticationDto.getUsername(), authenticationDto.getPassword()));
+        try {
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken
+                    (authenticationDto.getUsername(), authenticationDto.getPassword()));
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwtToken = jwtProvider.generateToken(authentication);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String jwtToken = jwtProvider.generateToken(authentication);
 
-        return new AuthenticationResponse(jwtToken);
+            return new AuthenticationResponse(jwtToken);
+        } catch (BadCredentialsException e) {
+            return AuthenticationResponse.builder().jwtToken(null).build();
+        }
     }
 
     private String passwordEncoder(String password) {
