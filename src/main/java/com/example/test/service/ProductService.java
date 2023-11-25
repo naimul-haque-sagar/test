@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -18,14 +19,14 @@ public class ProductService {
         List<Product> products = productDto.getRecords()
                 .stream()
                 .map(Product::from)
-                .toList();
+                .collect(Collectors.toList());
 
         List<Product> productList = productRepository.saveAll(products);
 
         return productList
                 .stream()
                 .map(Records::from)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public List<Product> getAllProducts() {

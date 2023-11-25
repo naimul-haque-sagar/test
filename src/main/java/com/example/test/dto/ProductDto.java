@@ -5,7 +5,6 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import java.util.List;
 @Builder
 public class ProductDto implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 1L;
 
     private Long id;

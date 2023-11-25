@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "1fdde542-e986-456f-973a-38adea080062",
+		"name": "Test_Upwork",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/user/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"userone\",\n    \"password\" : \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/user/authenticate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"userone\",\n    \"password\" : \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/products/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"table\": \"products\",\n    \"records\": [\n        {\n            \"entry_date\": \"03-01-2023\",\n            \"itemcode\": \"11111\",\n            \"itemname\": \"Test Inventory 1\",\n            \"itemquantity\": \"20\",\n            \"upc\": \"upc-11111\",\n            \"ean\": \"ean-11111\",\n            \"sku\": \"sku-11111\",\n            \"isbn\": \"isbn-11111\",\n            \"mpc\": \"mpc-11111\",\n            \"sStatus\": \"Paid\"\n        },\n        {\n            \"entry_date\": \"03-01-2023\",\n            \"itemcode\": \"22222\",\n            \"itemname\": \"Test Inventory 2\",\n            \"itemquantity\": \"20\",\n            \"upc\": \"upc-22222\",\n            \"ean\": \"ean-22222\",\n            \"sku\": \"sku-22222\",\n            \"isbn\": \"isbn-22222\",\n            \"mpc\": \"mpc-22222\",\n            \"sStatus\": \"Paid\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/products/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/products/all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2Vyb25lIiwiaWF0IjoxNzAwOTA1MDUzLCJleHAiOjE3MDE3NjkwNTN9.LBA0Aq_o_AtURj19MDkaKMsgfJYMuhAtnPjSmYrLiB1CzHPnQ2t9sLOFzue3MbbK0WL5jR-MlU3qTgA1Yg7xeg",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"table\": \"products\",\n    \"records\": [\n        {\n            \"entry_date\": \"03-01-2023\",\n            \"itemcode\": \"11111\",\n            \"itemname\": \"Test Inventory 1\",\n            \"itemquantity\": \"20\",\n            \"upc\": \"upc-11111\",\n            \"ean\": \"ean-11111\",\n            \"sku\": \"sku-11111\",\n            \"isbn\": \"isbn-11111\",\n            \"mpc\": \"mpc-11111\",\n            \"sStatus\": \"Paid\"\n        },\n        {\n            \"entry_date\": \"03-01-2023\",\n            \"itemcode\": \"22222\",\n            \"itemname\": \"Test Inventory 2\",\n            \"itemquantity\": \"20\",\n            \"upc\": \"upc-22222\",\n            \"ean\": \"ean-22222\",\n            \"sku\": \"sku-22222\",\n            \"isbn\": \"isbn-22222\",\n            \"mpc\": \"mpc-22222\",\n            \"sStatus\": \"Paid\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/products/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

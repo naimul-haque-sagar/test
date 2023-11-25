@@ -4,7 +4,9 @@ import com.example.test.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class UserDetailsImplementation implements UserDetails {
@@ -16,7 +18,7 @@ public class UserDetailsImplementation implements UserDetails {
     public UserDetailsImplementation(User user) {
         username = user.getUsername();
         password = user.getPassword();
-        authorities = List.of();
+        authorities = Collections.emptyList();
     }
 
     @Override

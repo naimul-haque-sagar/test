@@ -5,14 +5,12 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.io.Serial;
 import java.io.Serializable;
 
 @Data
 @Builder
 public class AuthenticationDto implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 1L;
 
     @NotBlank(message = "Username is required")

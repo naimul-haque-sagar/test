@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 @Data
@@ -13,7 +12,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Builder
 public class AuthenticationResponse implements Serializable {
-    @Serial
     private static final long serialVersionUID = 1L;
 
     private String jwtToken;
