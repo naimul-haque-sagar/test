@@ -1,17 +1,20 @@
 package com.example.test.controller;
 
+import com.example.test.dto.AuthenticationDto;
 import com.example.test.dto.AuthenticationResponse;
 import com.example.test.dto.UserDto;
 import com.example.test.entity.User;
 import com.example.test.service.UserService;
+import com.example.test.validator.UserDtoValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/user")
@@ -19,16 +22,33 @@ import javax.validation.Valid;
 public class UserController {
     private final UserService userService;
 
+    private final UserDtoValidator userDtoValidator;
+
+    public static final String USER_DTO_BINDER = "userDto";
+
+    @InitBinder(USER_DTO_BINDER)
+    protected void initExperienceDtoBinder(WebDataBinder binder) {
+        binder.addValidators(userDtoValidator);
+    }
+
     @PostMapping("/add")
-    public ResponseEntity<UserDto> addUser(@Valid @RequestBody UserDto userDto) {
+    public ResponseEntity<?> addUser(@RequestBody @Valid UserDto userDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage());
+        }
+
         User user = userService.addNewUser(userDto);
 
         return ResponseEntity.ok(UserDto.from(user));
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody UserDto userDto) {
-        AuthenticationResponse authenticationResponse = userService.authenticateUser(userDto);
+    public ResponseEntity<?> authenticate(@RequestBody @Valid AuthenticationDto authenticationDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage());
+        }
+
+        AuthenticationResponse authenticationResponse = userService.authenticateUser(authenticationDto);
 
         return ResponseEntity.ok(authenticationResponse);
     }

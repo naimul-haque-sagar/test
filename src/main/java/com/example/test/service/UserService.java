@@ -1,5 +1,6 @@
 package com.example.test.service;
 
+import com.example.test.dto.AuthenticationDto;
 import com.example.test.dto.AuthenticationResponse;
 import com.example.test.dto.UserDto;
 import com.example.test.entity.User;
@@ -29,9 +30,9 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public AuthenticationResponse authenticateUser(UserDto userDto) {
+    public AuthenticationResponse authenticateUser(AuthenticationDto authenticationDto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken
-                (userDto.getUsername(), userDto.getPassword()));
+                (authenticationDto.getUsername(), authenticationDto.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwtToken = jwtProvider.generateToken(authentication);

@@ -1,6 +1,6 @@
 package com.example.test.jwt;
 
-import com.example.test.config.UserDetailsServiceImplementation;
+import com.example.test.service.UserDetailsServiceImplementation;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
